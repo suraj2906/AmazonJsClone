@@ -29,7 +29,7 @@ products.map(value => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-selector-${value.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -71,7 +71,9 @@ document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
         button.addEventListener('click', () => {
             const productId = button.dataset.productId;
-            addToCart(productId);
+            const selectedQuantity = parseInt(document.querySelector(`.js-selector-${productId}`).value);
+            
+            addToCart(productId, selectedQuantity);
             updateCartQuantity();
         }
     );
